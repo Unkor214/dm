@@ -1,12 +1,8 @@
-# dm
-Simple script for music install using yt-dlp
+DM - simple script for music and video install
 
-in last update B-3.0 beta 3 added
+requsted :
+- [yt-dlp](https://github.com/yt-dlp/yt-dlp) (install bin file and add in path)
+- [python](https://www.python.org/) (for running script)
 
-config file = configDm.ini
-config file standart preference :
-    DmPrefix = -x --audio-format mp3 --embed-thumbnail --embed-metadata
-    DvPrefix = --embed-thumbnail --embed-metadata
-
-HOW TO VIEW COMMANDS?????!!!1111
-dm.py -h || -help
+DM - without installing the file on the computer, [yt-dlp](https://github.com/yt-dlp/yt-dlp) DM in turn allows you not to write prefexes every time, and contains prefexes,
+by default they are in the configuration file 'config.ini' which is generated automatically in the directory of the executable file
