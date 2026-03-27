@@ -1,0 +1,10 @@
+{
+    "music" : {
+        "prefix" : "-x --audio-format mp3 --embed-thumbnail --embed-metadata",
+        "flag" : "m" 
+    },
+    "video" : {
+        "prefix" : "--embed-thumbnail --embed-metadata",
+        "flag" : "v"
+    }
+}

@@ -1,26 +1,35 @@
-import os , configparser
+import os , json, re
 
 from sys import argv
 from pathlib import Path
 
-config = configparser.ConfigParser()
+#config read func (-_-)
+def configRead() :
+    try :
+        #trying read config "config.json" in main file dir )
+        with open(Path(__file__).resolve().parent/"config.json", "r") as json_config :
+            config = json.load(json_config) #loding config.json in config
+    except FileNotFoundError :
+        #el file not found (
+        print("error - config file not found\ncreat - new config file")
 
-try :
-    config.read(Path(__file__).res.parent/'config.ini')
-except :
-    config['prefix'] = {
-    'music': '-x --audio-format mp3 --embed-thumbnail --embed-metadata',
-    'video': '--embed-thumbnail --embed-metadata'
-    }
-    with open(Path(__file__).resolve().parent/'config.ini', 'w') as configfile :
-        config.write(configfile)
+        #writing file
+        with open(Path(__file__).resolve().parent/"config.json", "w") as json_config :
+            json_config.write() #creat null json file
+    
+    return config
 
-if 'm' in argv :
-    url = argv[1]
-    os.system(f"yt-dlp {config['prefix']['music']} {url}")
-if 'v' in argv :
-    url = argv[1]
-    os.system(f"yt-dlp {config['prefix']['video']} {url}")
-else :
-    print ('\tm = use music download prefix\n' +
-        '\tv = use video download prefix')
+#main func ^^
+def main() :
+    config = configRead()
+
+    for custom_obj in config :
+        if config[custom_obj]["flag"] in argv :
+            for flags in argv :
+                if re.search(r"^http", flags) :
+                    url = flags
+                    break
+            os.system(f"yt-dlp {config[custom_obj]["prefix"]} {url}")
+
+if __name__ == "__main__" :
+    main()
